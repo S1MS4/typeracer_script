@@ -1,40 +1,40 @@
 import time
+import pyautogui
 import keyboard
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
+from bs4 import BeautifulSoup
+from selenium.webdriver.chrome.options import Options
 
-def start_typing_test():
-    # Set up the Selenium WebDriver
-    options = webdriver.ChromeOptions()
-    options.add_argument("--start-maximized")  # Open browser in full screen
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+def get_text(driver):
+    time.sleep(1)
+    src = driver.page_source
+    soup = BeautifulSoup(src,"html.parser")
+    span = soup.findAll("span")
+    text = ""
 
-    # Open the typing test page
+    for i in span:
+        if "incomplete current" or "incomplete" in str(i):
+            text += i.text
+
+    if not text:
+        print("no txt")
+        return None
+    else:
+        print("text to type: ", text)
+    return text
+
+def type_text(text):
+    pyautogui.typewrite(text)
+
+def main():
+    chrome_options = Options()
+    chrome_options.add_experimental_option("detach",True)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.get("https://humanbenchmark.com/tests/typing")
-    time.sleep(3)  # Wait for page to load
+    keyboard.wait("CTRL + ALT + 1")
 
-    # Extract the letters from the typing test
-    letters = driver.find_elements(By.CSS_SELECTOR, ".letters span")
-    text_to_type = "".join([letter.text for letter in letters])
+    text_to_type = get_text(driver)
+    if text_to_type:
+        type_text(text_to_type)
 
-    # Find the typing input field
-    input_field = driver.find_element(By.TAG_NAME, "input")
-
-    # Type each letter with a small delay to simulate human typing
-    for letter in text_to_type:
-        input_field.send_keys(letter)
-        time.sleep(0.05)  # Adjust speed (50ms per key)
-
-    print("Typing test completed!")
-    time.sleep(3)  # Pause to see results before closing
-    driver.quit()
-
-# Wait for the Ctrl + Alt + T combination
-print("Press Ctrl + Alt + T to start typing...")
-keyboard.add_hotkey('ctrl+alt+t', start_typing_test)
-
-# Keep the script running to listen for the key combination
-keyboard.wait('esc')  # Press 'Esc' to stop the script
+main()
