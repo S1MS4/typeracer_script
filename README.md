@@ -1,4 +1,4 @@
-# 🚀 Auto-Text-Typer for Human Benchmark Typing Test 🎯
+# 🚀 Text AutoFill for Human Benchmark Typing Test 🎯
 
 This Python script automates the typing test on the [Human Benchmark](https://humanbenchmark.com/tests/typing) website. Using a combination of **Selenium**, **BeautifulSoup**, **PyAutoGUI**, and **Keyboard**, it extracts the text to type from the page and simulates typing it.
 
