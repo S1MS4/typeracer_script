@@ -1,61 +1,57 @@
-# 🚀 Text AutoFill for Human Benchmark Typing Test 🎯
+# Human Benchmark Typing Test Auto-Typer
 
-This Python script automates the typing test on the [Human Benchmark](https://humanbenchmark.com/tests/typing) website. Using a combination of **Selenium**, **BeautifulSoup**, **PyAutoGUI**, and **Keyboard**, it extracts the text to type from the page and simulates typing it.
+This script automates the [Human Benchmark Typing Test](https://humanbenchmark.com/tests/typing) by scraping the text to type from the webpage and automatically typing it using your keyboard.
 
----
+## ⚠️ Disclaimer
+This script is for educational purposes only. Automating human performance tests violates the spirit of fair play and may breach the site's terms of service. Use responsibly and at your own risk.
 
-## ✨ Features
+## Features
+- Automatically opens the Human Benchmark Typing Test in Chrome
+- Waits for your manual trigger (`Ctrl + Alt + 1`) before starting
+- Scrapes the text to be typed from the webpage
+- Automatically types the text at high speed
 
-- 🌐 Automatically navigates to the **Human Benchmark Typing Test**.
-- ✍️ Extracts the text to type from the page in a smart way.
-- ⏱ Waits for a user-defined key combination (`CTRL + ALT + 1`) to start typing.
-- 🎮 Uses **PyAutoGUI** to simulate typing the extracted text into the input field.
-- 👨‍💻 Inspired by **The-CodingSloth** for automating repetitive tasks.
+## Requirements
+- Python 3.x
+- Chrome browser
+- ChromeDriver (must match your Chrome version)
 
----
+## Installation
+1. Clone this repository:
+   ```bash
+   git clone <repository-url>
+   cd <repository-directory>
+   ```
 
-## 🛠 Requirements
+2. Install required packages:
+   ```bash
+   pip install selenium beautifulsoup4 pyautogui keyboard
+   ```
 
-To run this script, you need to have the following Python packages installed:
+3. Download and install [ChromeDriver](https://chromedriver.chromium.org/) and ensure it's in your system PATH.
 
-- 🐍 Python 3.x
-- **Selenium**: Automates browser interaction.
-- **BeautifulSoup4**: Parses HTML content and extracts the necessary text.
-- **PyAutoGUI**: Simulates keyboard inputs to type the extracted text.
-- **Keyboard**: Listens for specific keyboard input events.
+## Usage
+1. Run the script:
+   ```bash
+   python typing_bot.py
+   ```
 
-You can install all the required packages using `pip`:
+2. A Chrome window will open and navigate to the typing test page.
 
-```bash
-pip install selenium beautifulsoup4 pyautogui keyboard
-```
+3. When you're ready to start, press **Ctrl + Alt + 1**.
 
-In addition, make sure Google Chrome and ChromeDriver are installed. The script will automatically manage the WebDriver using Selenium's built-in features.
+4. The script will automatically type the text and submit it.
 
----
+## How It Works
+1. Uses Selenium to control Chrome and load the typing test page
+2. Parses the page HTML with BeautifulSoup to extract the text to type
+3. Uses PyAutoGUI to simulate keyboard typing
+4. Waits for a manual trigger key combination to prevent accidental execution
 
-## 🚀 How to Use
-- Clone or download this repository to your local machine. 🖥️
+## Limitations
+- May not work if the website structure changes
+- Requires the browser window to be in focus during typing
+- Accuracy and WPM scores may be affected by system performance
 
-- Ensure Google Chrome is installed on your system. 🔥
-
-Run the script:
-```bash
-python auto_text_typer.py
-```
-- The script will launch Chrome and navigate to the Human Benchmark Typing Test. 🌐
-
-- Wait for the page to load, and ***accept the cookie consent banner***
-
-- Press CTRL + ALT + 1 to trigger the typing automation. ⌨️
-
-- The script will automatically extract the text that needs to be typed and start typing it into the input field. 📝
----
-
-## 📝 Final Thoughts
-
-This is my **first project on GitHub**! 🎉 The code is a bit **sloppy**, but I’m learning and improving. Feel free to share any feedback or suggestions!
-
-Thanks for checking it out! 🚀
-
----
+## License
+This project is for educational purposes only. Not affiliated with Human Benchmark.
